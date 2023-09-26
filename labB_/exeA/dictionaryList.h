@@ -29,6 +29,7 @@ using namespace std;
 // Edit these typedefs to change the key or datum types, if necessary.
 typedef int Key;
 typedef Mystring Datum;
+// typedef is name for Mystring
 
 // THE NODE TYPE
 //    In this exercise the node type is a class, that has a ctor.

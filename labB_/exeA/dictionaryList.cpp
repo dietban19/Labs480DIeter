@@ -240,7 +240,10 @@ ostream &operator<<(ostream &os, const DictionaryList &dl)
   while (temp.cursor_ok())
   {
     // cursor_key is a pointer to keyM
-    // cursour_datum is a pointer to datumM which is an object of lengthM and charsM
+    /*
+    cursour_datum is a pointer to datumM which is an object of lengthM and charsM
+    so we need to make a <<operator for myString
+    */
     cout << temp.cursor_key() << ": " << temp.cursor_datum();
     cout << endl;
     temp.step_fwd();

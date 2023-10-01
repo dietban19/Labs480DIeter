@@ -22,7 +22,6 @@ class Mystring
 {
 
 public:
-  friend ostream &operator<<(ostream &os, const Mystring &s);
   Mystring();
   // PROMISES: Empty string object is created.
 
@@ -103,6 +102,8 @@ private:
   int lengthM;  // the string length - number of characters excluding \0
   char *charsM; // a pointer to the beginning of an array of characters, allocated dynamically.
   void memory_check(char *s);
+  friend ostream &operator<<(ostream &os, const Mystring &s);
   // PROMISES: if s points to NULL terminates the program.
 };
 #endif
+ostream &operator<<(ostream &os, const Mystring &s);

@@ -1,6 +1,4 @@
-// lookuptable.cpp
 
-// ENSF 480 - Lab 2 - Exercise A
 
 /*
  * File Name: dictionaryList.cpp
@@ -19,19 +17,12 @@
 using namespace std;
 
 Node::Node(const Key &keyA, const Datum &datumA, Node *nextA)
-    : keyM(keyA), datumM(datumA), nextM(nextA)
-{
-}
-
+    : keyM(keyA), datumM(datumA), nextM(nextA){}
 DictionaryList::DictionaryList()
-    : sizeM(0), headM(0), cursorM(0)
-{
-}
+    : sizeM(0), headM(0), cursorM(0){}
 
 DictionaryList::DictionaryList(const DictionaryList &source)
-{
-  copy(source);
-}
+{copy(source);}
 
 DictionaryList &DictionaryList::operator=(const DictionaryList &rhs)
 {
@@ -71,24 +62,19 @@ const Datum &DictionaryList::cursor_datum() const
 
 void DictionaryList::insert(const Key &keyA, const Datum &datumA)
 {
-  // Add new node at head?
   if (headM == 0 || keyA < headM->keyM)
   {
     headM = new Node(keyA, datumA, headM);
     sizeM++;
   }
 
-  // Overwrite datum at head?
   else if (keyA == headM->keyM)
     headM->datumM = datumA;
 
-  // Have to search ...
   else
   {
 
-    // POINT ONE
 
-    // if key is found in list, just overwrite data;
     for (Node *p = headM; p != 0; p = p->nextM)
     {
       if (keyA == p->keyM)
@@ -98,7 +84,6 @@ void DictionaryList::insert(const Key &keyA, const Datum &datumA)
       }
     }
 
-    // OK, find place to insert new node ...
     Node *p = headM->nextM;
     Node *prev = headM;
 
@@ -126,7 +111,6 @@ void DictionaryList::remove(const Key &keyA)
     doomed_node = headM;
     headM = headM->nextM;
 
-    // POINT TWO
   }
   else
   {
@@ -147,7 +131,6 @@ void DictionaryList::remove(const Key &keyA)
   if (doomed_node == cursorM)
     cursorM = 0;
 
-  delete doomed_node; // Does nothing if doomed_node == 0.
   sizeM--;
 }
 
@@ -169,10 +152,6 @@ void DictionaryList::make_empty()
   cursorM = 0;
 }
 
-// The following function are supposed to be completed by the stuents, as part
-// of the exercise B part II. the given fucntion are in fact place-holders for
-// find, destroy and copy, in order to allow successful linking when you're
-// testing insert and remove. Replace them with the definitions that work.
 
 void DictionaryList::find(const Key &keyA)
 {
@@ -210,7 +189,6 @@ void DictionaryList::copy(const DictionaryList &source)
     sizeM = 0;
     return;
   }
-  // copy the the first element of source
   headM = new Node(source.headM->keyM, source.headM->datumM, nullptr);
   if (source.cursorM == source.headM)
   {
@@ -233,13 +211,10 @@ void DictionaryList::copy(const DictionaryList &source)
 
 ostream &operator<<(ostream &os, const DictionaryList &dl)
 {
-  // We have to make sure that the cursor is pointing at the first index of dl
-  // using temp so that we do not change the cursor of dl, we need dl to be constant
   DictionaryList temp = dl;
   temp.go_to_first();
   while (temp.cursor_ok())
   {
-    // cursor_key is a pointer to keyM
     /*
     cursour_datum is a pointer to datumM which is an object of lengthM and charsM
     so we need to make a <<operator for myString
@@ -252,10 +227,8 @@ ostream &operator<<(ostream &os, const DictionaryList &dl)
   return os;
 }
 
-// we want const to be in the first, because we want to be able to change the cursor
 const Mystring &DictionaryList::operator[](const int index)
 {
-  // point cursor at the first
   go_to_first();
 
   for (int i = 0; i < index; ++i)

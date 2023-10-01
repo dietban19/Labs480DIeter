@@ -8,21 +8,21 @@ using namespace std;
 int Point::idNum = 1000;
 Point::Point(double x, double y) : x(x), y(y), id(++idNum) {}
 
-void Point::display()
+void Point::display() const
 {
-    cout << "Point X: " << x;
+    cout << "X-Coordinate: " << x;
     cout << endl;
-    cout << "Point Y: " << y;
+    cout << "Y-Coordinate: " << y;
     cout << endl;
 }
 
-double Point::getXPoint() const { return x; }
-double Point::getYPoint() const { return y; }
-void Point::setXPoint(double x)
+double Point::getx() const { return x; }
+double Point::gety() const { return y; }
+void Point::setx(double x)
 {
     this->x = x;
 }
-void Point::setYPoint(double y)
+void Point::sety(double y)
 {
     this->y = y;
 }
@@ -34,12 +34,12 @@ int Point::counter()
 }
 
 // Distance formula = √((x2 - x1)^2 + (y2 - y1)^2)
-double Point::euclideanDistance(const Point &point1, const Point &point2)
+double Point::distance(const Point &point1, const Point &point2)
 {
     return sqrt((pow(point2.x - point1.x, 2) + pow(point2.y - point1.y, 2)));
 }
 
-double Point::euclideanDistance(const Point &otherPoint)
+double Point::distance(const Point &otherPoint)
 {
     return sqrt(pow(otherPoint.x - this->x, 2) + pow(otherPoint.y - this->y, 2));
 }

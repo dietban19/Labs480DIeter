@@ -15,15 +15,17 @@ using namespace std;
 // Square Inherits Shapesasdf
 class Square : public Shape
 {
-private:
+protected:
     double side_a;
 
 public:
-    Square(double x, double y, const char *sName, double side_a);
+    Square(double x, double y, double side_a, const char *sName);
     double area() const;
     double perimeter() const;
-    void setSideA(double side);
-    double getSideA() const;
+    void set_side_a(double side);
+    double get_side_a() const;
     void display();
+    Square(const Square &other); // Copy Constructor declaration
+    Square &operator=(const Square &other);
 };
 #endif

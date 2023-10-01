@@ -107,18 +107,13 @@ public:
   //   If cursor is at the last key/datum pair in the list, cursor
   //   goes to the off-list state.
   //   Otherwise the cursor moves forward from one pair to the next.
-
   void make_empty();
   // PROMISES: size() == 0.
-
 private:
   int sizeM;
   Node *headM;
   Node *cursorM;
-
-  void destroy();
-  // Deallocate all nodes, set headM to zero.
-
+  void destroy();  // Deallocate all nodes, set headM to zero.
   void copy(const DictionaryList &source);
   // Establishes *this as a copy of source.  Cursor of *this will
   // point to the twin of whatever the source's cursor points to.

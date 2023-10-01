@@ -15,15 +15,15 @@ private:
 
 public:
     Point(double x, double y);
-    void display();
-    double getXPoint() const;
-    double getYPoint() const;
-    void setXPoint(double x);
-    void setYPoint(double y);
-    // static int counter();
-    static int counter(); // Added this line
-    static double euclideanDistance(const Point &point1, const Point &point2);
-    double euclideanDistance(const Point &otherPoint);
+    void display() const;
+    // getters setters
+    double getx() const;
+    double gety() const;
+    void setx(double x);
+    void sety(double y);
+    static int counter();
+    static double distance(const Point &point1, const Point &point2);
+    double distance(const Point &otherPoint);
 };
 
 #endif

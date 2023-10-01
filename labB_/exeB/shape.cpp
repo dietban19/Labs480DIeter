@@ -27,19 +27,25 @@ const char *Shape::getName() const
 
 void Shape::display()
 {
+    cout << endl;
     cout << "Shape Name: " << shapeName << endl;
     origin.display();
 }
-double Shape::distance(Shape &the_shape, Shape &other)
+double Shape::distance(Shape &main_shape, Shape &other)
 {
-    return Point::euclideanDistance(the_shape.origin, other.origin);
+    return Point::distance(main_shape.origin, other.origin);
 }
 double Shape::distance(const Shape &other)
 {
-    return origin.euclideanDistance(other.origin);
+    return origin.distance(other.origin);
 }
 void Shape::move(double dx, double dy)
 {
-    origin.setXPoint(origin.getXPoint() + dx);
-    origin.setYPoint(origin.getYPoint() + dy);
+    origin.setx(origin.getx() + dx);
+    origin.sety(origin.gety() + dy);
+}
+
+char &Shape::operator[](const int index) const
+{
+    return shapeName[index];
 }

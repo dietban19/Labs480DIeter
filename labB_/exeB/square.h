@@ -3,7 +3,7 @@
  * Assignment: Lab 2 Exercise B
  * Lab Section: B02
  * Completed by: Dieter Banaag
- * Submission Date: September 23, 2023
+ * Submission Date: October 1, 2023
  */
 #include <iostream>
 #include <stdlib.h>
@@ -12,6 +12,7 @@
 #include <iostream>
 using namespace std;
 #include "shape.h"
+#include <string.h>
 // Square Inherits Shapesasdf
 class Square : public Shape
 {

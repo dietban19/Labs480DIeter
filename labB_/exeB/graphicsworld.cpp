@@ -1,3 +1,11 @@
+/*
+ * File Name: graphicsworld.h
+ * Assignment: Lab 2 Exercise B
+ * Lab Section: B02
+ * Completed by: Dieter Banaag
+ * Submission Date: October 1, 2023
+ */
+
 #include <iostream>
 #include "graphicsworld.h"
 #include "point.h"
@@ -66,6 +74,10 @@ s.display();
     cout << "\nIf it doesn't there is a problem with your assignment operator.\n"
          << endl;
     rec3.display();
+
+
+
+
 #endif // end of block to test Rectangle
 #if 0  // Change 0 to 1 to test using array of pointer and polymorphism
 cout << "\nTesting array of pointers and polymorphism:" <<endl;

@@ -1,4 +1,10 @@
-
+/*
+ * File Name: shape.h
+ * Assignment: Lab 2 Exercise B
+ * Lab Section: B02
+ * Completed by: Dieter Banaag
+ * Submission Date: October 1, 2023
+ */
 #include <iostream>
 #include <string>
 using namespace std;
@@ -11,8 +17,7 @@ using namespace std;
 class Shape
 {
 protected:
-    // The type or member can be accessed only by code in the same class ,
-    // or in a class that is derived from that class .
+
     Point origin;
     char *shapeName;
 
@@ -20,8 +25,8 @@ public:
     // Point x, y
     Shape(double x, double y, const char *sName);
     virtual ~Shape();
-    virtual double area() const = 0;      // pure virtual function
-    virtual double perimeter() const = 0; // pure virtual function
+    virtual double area() const = 0;      
+    virtual double perimeter() const = 0; 
     const Point &getOrigin() const;
     const char *getName() const;
     virtual void display();

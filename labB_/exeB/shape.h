@@ -17,7 +17,6 @@ using namespace std;
 class Shape
 {
 protected:
-
     Point origin;
     char *shapeName;
 
@@ -25,8 +24,8 @@ public:
     // Point x, y
     Shape(double x, double y, const char *sName);
     virtual ~Shape();
-    virtual double area() const = 0;      
-    virtual double perimeter() const = 0; 
+    virtual double area() const = 0;
+    virtual double perimeter() const = 0;
     const Point &getOrigin() const;
     const char *getName() const;
     virtual void display();

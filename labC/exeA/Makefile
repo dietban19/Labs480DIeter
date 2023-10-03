@@ -5,7 +5,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++11
 
 # Source Files
-SOURCES = graphicsworld.cpp point.cpp shape.cpp square.cpp rectangle.cpp exeBmain.cpp circle.cpp
+SOURCES = graphicsworld.cpp point.cpp shape.cpp square.cpp rectangle.cpp exeBmain.cpp circle.cpp curvecut.cpp
 
 # Output File
 OUTPUT = myprogram

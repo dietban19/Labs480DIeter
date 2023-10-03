@@ -11,6 +11,11 @@
 #include "shape.h"
 using namespace std;
 
+Shape::Shape(const Point &orgn, const char *sName):origin(orgn)
+{
+    shapeName = new char[strlen(sName) + 1];
+    strcpy(shapeName, sName);
+}
 Shape::Shape(double x, double y, const char *sName) : origin(x, y)
 {
     shapeName = new char[strlen(sName) + 1];
@@ -18,6 +23,7 @@ Shape::Shape(double x, double y, const char *sName) : origin(x, y)
 }
 Shape::~Shape()
 {
+    // cout << "deleting: " << shapeName << endl;
     delete[] shapeName;
 }
 
@@ -54,4 +60,19 @@ void Shape::move(double dx, double dy)
 char &Shape::operator[](const int index) const
 {
     return shapeName[index];
+}
+Shape::Shape(const Shape &other) : origin(Point(other.getOrigin().getx(), other.getOrigin().gety()))
+{
+    shapeName = new char[strlen(other.getName() + 1)];
+    strcpy(shapeName, other.getName());
+}
+
+Shape &Shape::operator=(const Shape&other){
+    if(this !=&other){
+                delete[] shapeName;
+        origin = Point(other.getOrigin().getx(),other.getOrigin().gety());
+        shapeName = new char[strlen(other.getName() + 1)];
+        strcpy(shapeName, other.getName());
+    }
+    return *this;
 }

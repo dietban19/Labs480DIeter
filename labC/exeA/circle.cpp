@@ -8,7 +8,7 @@
 
 #include "circle.h"
 
-Circle::Circle(double x, double y, double radius_a, const char *sName) : Shape(x, y, sName), radius(radius_a)
+Circle::Circle(double x, double y, double radius_a, const char *sName) : Shape(Point(x,y),sName), radius(radius_a)
 {
 }
 
@@ -32,7 +32,7 @@ double Circle::get_radius() const
 void Circle::display()
 {
     cout << endl;
-    cout << "Circle Name: " << Shape::getName() << endl;
+    cout << "Circle Name: " << getName() << endl;
     getOrigin().display();
     cout << "Radius: " << radius << endl;
     cout << "Area: " << area() << endl;

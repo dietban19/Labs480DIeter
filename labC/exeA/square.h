@@ -20,13 +20,14 @@ protected:
     double side_a;
 
 public:
+// Square(Point&orgn, double sideA,const char *sName);
     Square(double x, double y, double side_a, const char *sName);
     double area() const;
     double perimeter() const;
     void set_side_a(double side);
     double get_side_a() const;
     void display();
-    Square(const Square &other); // Copy Constructor declaration
-    Square &operator=(const Square &other);
+    // Square(const Square &other); // Copy Constructor declaration
+    // Square &operator=(const Square &other);
 };
 #endif

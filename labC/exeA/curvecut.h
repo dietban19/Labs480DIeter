@@ -16,7 +16,15 @@ using namespace std;
 #ifndef CURVECUT_H
 #define CURVECUT_H
 
-class CurveCut : public Circle, public Rectangle
+class CurveCut : public Rectangle, public Circle
 {
-}
+    private:
+
+    public:
+    //CurveCut rc(6, 5, 10, 12, 9, "CurveCut rc");
+        CurveCut(double x, double y, double sideA, double sideB, double radius, const char *sName);
+        double area() const;
+        double perimeter() const;
+        void display();
+};
 #endif

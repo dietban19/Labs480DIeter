@@ -13,6 +13,7 @@
 #include "square.h"
 #include "rectangle.h"
 #include "circle.h"
+#include "curvecut.h"
 
 void GraphicsWorld::run()
 {
@@ -77,33 +78,43 @@ void GraphicsWorld::run()
      rec3.display();
 
 #endif // end of block to test Rectangle
-#if 1  // Change 0 to 1 to test using array of pointer and polymorphism
-     cout << "\nTesting array of pointers and polymorphism:" << endl;
-     Shape *sh[4];
-     sh[0] = &s;
-     sh[1] = &b;
-     sh[2] = &rec1;
-     sh[3] = &rec3;
-     sh[0]->display();
-     sh[1]->display();
-     sh[2]->display();
-     sh[3]->display();
-#endif
+// #if 1  // Change 0 to 1 to test using array of pointer and polymorphism
+//      cout << "\nTesting array of pointers and polymorphism:" << endl;
+//      Shape *sh[4];
+//      sh[0] = &s;
+//      sh[1] = &b;
+//      sh[2] = &rec1;
+//      sh[3] = &rec3;
+//      sh[0]->display();
+//      sh[1]->display();
+//      sh[2]->display();
+//      sh[3]->display();
+// #endif
 #if 1
+Rectangle test(1,2,4,5,"tset");
+test.display();
+Rectangle news(test);
+cout<<"Printing news" << endl;
+news.display();
      cout << "\nTesting Functions in class Circle:" << endl;
      Circle c(3, 5, 9, "CIRCLE C");
      c.display();
+     // Circle coptt(c);
      cout << "the area of " << c.getName() << " is: " << c.area() << endl;
      cout << "the perimeter of " << c.getName() << " is: " << c.perimeter() << endl;
 #endif
-#if 0
+#if 1
+// a = 5,7, c = 3,5
      d = a.distance(c);
      cout << "\nThe distance between rectangle a and circle c is: " << d;
-
+#endif
+#if 1
      CurveCut rc(6, 5, 10, 12, 9, "CurveCut rc");
      rc.display();
      cout << "the area of " << rc.getName() << " is: " << rc.area();
      cout << "the perimeter of " << rc.getName() << " is: " << rc.perimeter();
+#endif
+#if 1
      d = rc.distance(c);
      cout << "\nThe distance between rc and c is: " << d;
      // Using array of Shape pointers:
@@ -112,15 +123,19 @@ void GraphicsWorld::run()
      sh[1] = &a;
      sh[2] = &c;
      sh[3] = &rc;
+     cout << "\nsh[0]" << endl;
      sh[0]->display();
      cout << "\nthe area of " << sh[0]->getName() << "is: " << sh[0]->area();
      cout << "\nthe perimeter of " << sh[0]->getName() << " is: " << sh[0]->perimeter();
+          cout << "sh[1]" << endl;
      sh[1]->display();
      cout << "\nthe area of " << sh[1]->getName() << "is: " << sh[1]->area();
      cout << "\nthe perimeter of " << sh[0]->getName() << " is: " << sh[1]->perimeter();
+         cout << "\nsh[2]" << endl;
      sh[2]->display();
      cout << "\nthe area of " << sh[2]->getName() << "is: " << sh[2]->area();
      cout << "\nthe circumference of " << sh[2]->getName() << " is: " << sh[2]->perimeter();
+          cout << "\nsh[3]" << endl;
      sh[3]->display();
      cout << "\nthe area of " << sh[3]->getName() << "is: " << sh[3]->area();
      cout << "\nthe perimeter of " << sh[3]->getName() << " is: " << sh[3]->perimeter();

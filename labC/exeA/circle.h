@@ -13,7 +13,6 @@
 using namespace std;
 #include "square.h"
 #include <cmath>
-//  Inherits square
 class Circle : virtual public Shape
 {
 protected:

@@ -13,12 +13,13 @@
 using namespace std;
 #include "square.h"
 //  Inherits square
-class Rectangle : virtual public Square
+class Rectangle : public Square
 {
 protected:
     double side_b;
 
 public:
+// Rectangle(Point&orgn, double side_a, double side_b, const char *sName);
     Rectangle(double x, double y, double side_a, double side_b, const char *sName);
     double area() const;
     double perimeter() const;
@@ -27,7 +28,7 @@ public:
     void set_side_b(double side);
     double get_side_b() const;
     void display();
-    Rectangle(const Rectangle &other);
-    Rectangle &operator=(const Rectangle &other);
+    // Rectangle(const Rectangle &other);
+    // Rectangle &operator=(const Rectangle &other);
 };
 #endif

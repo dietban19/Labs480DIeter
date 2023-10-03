@@ -22,6 +22,7 @@ protected:
 
 public:
     // Point x, y
+    Shape(const Point &orgn, const char *sName);
     Shape(double x, double y, const char *sName);
     virtual ~Shape();
     virtual double area() const = 0;
@@ -33,6 +34,8 @@ public:
     static double distance(Shape &main_shape, Shape &other);
     virtual void move(double dx, double dy);
     char &operator[](const int index) const;
+    Shape(const Shape &other);
+    Shape &operator=(const Shape&other);
 };
 
 #endif

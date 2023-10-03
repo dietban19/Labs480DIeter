@@ -10,7 +10,11 @@
 
 // 5 7 12 15
 // Square(5, 7, 12, name)
-Rectangle::Rectangle(double x, double y, double side_a, double sideB, const char *sName) : Square(x, y, side_a, sName), side_b(sideB)
+// Rectangle::Rectangle(Point&orgn, double side_a, double side_b, const char *sName):Shape(orgn, sName), Square(orgn, side_a, sName), side_b(side_b)
+// {
+
+// }
+Rectangle::Rectangle(double x, double y, double side_a, double sideB, const char *sName) : Shape(Point(x,y),sName),Square(x, y, side_a, sName), side_b(sideB)
 {
 }
 double Rectangle::area() const
@@ -43,30 +47,28 @@ void Rectangle::display()
 {
     cout << endl;
     // Square::display();
-    cout << "Rectangle Name: " << Shape::getName() << endl;
-    Square::getOrigin().display();
+    cout << "Rectangle Name: " << getName() << endl;
+    getOrigin().display();
     cout << "Side a: " << side_a << endl;
     cout << "Side b: " << side_b << endl;
     cout << "Area: " << area() << endl;
     cout << "Perimeter: " << perimeter() << endl;
     cout << endl;
 }
-Rectangle::Rectangle(const Rectangle &other)
+// Rectangle::Rectangle(const Rectangle &other)
+// : Shape(other), Square(other),side_b(other.side_b)
+// {
+//     cout << "\nCalling Copy: " << endl;
+//     // cout << other.getOrigin().getx();
+// };
 
-    : Square(other),
-      side_b(other.side_b)
-{
-    cout
-        << "\nCalling Copy: \n";
-};
+// Rectangle &Rectangle::operator=(const Rectangle &other)
+// {
+//     if (this != &other)
+//     {
+//         Square::operator=(other); // call base class assignment operator
+//         side_b = other.side_b;
+//     }
 
-Rectangle &Rectangle::operator=(const Rectangle &other)
-{
-    if (this != &other)
-    {
-        Square::operator=(other); // call base class assignment operator
-        side_b = other.side_b;
-    }
-
-    return *this;
-}
+//     return *this;
+// }

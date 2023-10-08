@@ -74,7 +74,13 @@ void Mystring::set_char(int pos, char c)
 
   charsM[pos] = c;
 }
+int Mystring::isNotEqual(const Mystring &s) const { return (strcmp(charsM, s.charsM) != 0); }
 
+int Mystring::isEqual(const Mystring &s) const { return (strcmp(charsM, s.charsM) == 0); }
+
+int Mystring::isGreaterThan(const Mystring &s) const { return (strcmp(charsM, s.charsM) > 0); }
+
+int Mystring::isLessThan(const Mystring &s) const { return (strcmp(charsM, s.charsM) < 0); }
 Mystring &Mystring::operator=(const Mystring &S)
 {
   if (this == &S)
@@ -107,13 +113,31 @@ void Mystring::set_str(char *s)
   strcpy(charsM, s);
 }
 
+bool Mystring::operator>=(const Mystring &rhs) const
+{
+  return (isGreaterThan(rhs) || isEqual(rhs));
+}
+bool Mystring::operator<=(const Mystring &rhs) const
+{
+  return (isLessThan(rhs) || isEqual(rhs));
+}
 bool Mystring::operator>(const Mystring &rhs) const
 {
-  return (strcmp(charsM, rhs.charsM) > 0);
+  return isGreaterThan(rhs);
 }
+
 bool Mystring::operator<(const Mystring &rhs) const
 {
-  return (strcmp(charsM, rhs.charsM) < 0);
+  return isLessThan(rhs);
+}
+
+bool Mystring::operator!=(const Mystring &rhs) const
+{
+  return isNotEqual(rhs);
+}
+bool Mystring::operator==(const Mystring &rhs) const
+{
+  return isEqual(rhs);
 }
 ostream &operator<<(ostream &os, const Mystring &s)
 {

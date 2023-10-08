@@ -4,7 +4,7 @@
 #include <iostream>
 #include <assert.h>
 #include "mystring2.h"
-
+#include <cstring>
 using namespace std;
 
 template <class T>
@@ -13,12 +13,12 @@ class Vector
 public:
   class VectIter
   {
-    friend class Vector<T>;
+    friend class Vector;
 
   private:
-    Vector<T> *v; // points to a vector object of type T
-    int index;    // represents the subscript number of the vector's
-                  // array.
+    Vector *v; // points to a vector object of type T
+    int index; // represents the subscript number of the vector's
+               // array.
   public:
     VectIter(Vector<T> &x);
 
@@ -65,16 +65,33 @@ private:
   T *array;            // points to the first element of an array of T
   int size;            // size of array
   void swap(T &, T &); // swaps the values of two elements in array
-public:
+  // public:
 };
 
 template <class T>
 void Vector<T>::ascending_sort()
 {
-  for (int i = 0; i < size - 1; i++)
+  for (int i = 0; i < size - 1; i++) // need to make overload operator for Mystring for > and <
+  {
     for (int j = i + 1; j < size; j++)
+    {
       if (array[i] > array[j])
         swap(array[i], array[j]);
+    }
+  }
+}
+
+template <> // this is specialization, for char*
+void Vector<const char *>::ascending_sort()
+{
+  for (int i = 0; i < size - 1; i++)
+  {
+    for (int j = i + 1; j < size; j++)
+    {
+      if (strcmp(array[i], array[j]) > 0)
+        swap(array[i], array[j]);
+    }
+  }
 }
 
 template <class T>
@@ -132,27 +149,28 @@ T Vector<T>::VectIter::operator*()
 }
 
 template <class T>
-Vector<T>::VectIter::VectIter(Vector &x)
+Vector<T>::VectIter::VectIter(Vector<T> &x)
 {
   v = &x;
   index = 0;
 }
-template <typename T>
-Vector<T>::Vector(int sz)
+template <class T>
+Vector<T>::Vector(int sz) // initialize the empty array
 {
   size = sz;
   array = new T[sz];
   assert(array != NULL);
 }
-template <typename T>
+
+template <class T>
 Vector<T>::~Vector()
 {
   delete[] array;
   array = NULL;
 }
 
-template <typename T>
-T &Vector<T>::operator[](int i)
+template <class T>
+T &Vector<T>::operator[](int i) // add the values to the array
 {
   return array[i];
 }
@@ -160,80 +178,92 @@ T &Vector<T>::operator[](int i)
 int main()
 {
 
-  Vector x(3);
+  Vector<int> x(3);
   x[0] = 999;
   x[1] = -77;
   x[2] = 88;
 
-  Vector::VectIter iter(x);
+  Vector<int>::VectIter iter(x);
 
   cout << "\n\nThe first element of vector x contains: " << *iter;
 
   // the code between the  #if 0 and #endif is ignored by
   // compiler. If you change it to #if 1, it will be compiled
 
-#if 0
-	cout << "\nTesting an <int> Vector: " << endl;
-	
-	cout << "\n\nTesting sort";
-	x.ascending_sort();
-	
-	for (int i=0; i<3 ; i++)
-		cout << endl << iter++;
-	
-	// cout << "\n\nTesting Prefix --:";
-	// for (int i=0; i<3 ; i++)
-	// 	cout << endl << --iter;
-	
-	// cout << "\n\nTesting Prefix ++:";
-	// for (int i=0; i<3 ; i++)
-	// 	cout << endl << ++iter;	
-	
-	// cout << "\n\nTesting Postfix --";
-	// for (int i=0; i<3 ; i++)
-	// 	cout << endl << iter--;
-	
-	// cout << endl;
-	
-	// cout << "Testing a <Mystring> Vector: " << endl;
-	// Vector<Mystring> y(3);
-	// y[0] = "Bar";
-	// y[1] = "Foo";
-	// y[2] = "All";;
-	
-	// Vector<Mystring>::VectIter iters(y);
-	
-	// cout << "\n\nTesting sort";
-	// y.ascending_sort();
-	
-	// for (int i=0; i<3 ; i++)
-	// 	cout << endl << iters++;
-	
-	// cout << "\n\nTesting Prefix --:";
-	// for (int i=0; i<3 ; i++)
-	// 	cout << endl << --iters;
-	
-	// cout << "\n\nTesting Prefix ++:";
-	// for (int i=0; i<3 ; i++)
-	// 	cout << endl << ++iters;
-	
-	// cout << "\n\nTesting Postfix --";
-	// for (int i=0; i<3 ; i++)
-	// 	cout << endl << iters--;
-	
-// 	cout << endl; cout << "Testing a <char *> Vector: " << endl;
-// 	Vector<const char*> z(3);
-// 	z[0] = "Orange";
-// 	z[1] = "Pear";
-// 	z[2] = "Apple";;
-	
-// 	Vector<const char*>::VectIter iterchar(z);
-	
-// 	cout << "\n\nTesting sort";
-// 	z.ascending_sort();
-	
-// 	for (int i=0; i<3 ; i++)
-// 		cout << endl << iterchar++;
+#if 1
+  cout << "\nTesting an <int> Vector: " << endl;
+
+  cout << "\n\nTesting sort";
+  x.ascending_sort();
+
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << iter++;
+
+  cout << "\n\nTesting Prefix --:";
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << --iter;
+
+  cout << "\n\nTesting Prefix ++:";
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << ++iter;
+
+  cout << "\n\nTesting Postfix --";
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << iter--;
+
+  cout << endl;
+
+  cout << "Testing a <Mystring> Vector: " << endl;
+  Vector<Mystring> y(3);
+  y[0] = "Bar";
+  y[1] = "Foo";
+  y[2] = "All";
+
+  Vector<Mystring>::VectIter iters(y);
+
+  cout << "\n\nTesting sort";
+  // cout << iters;
+  y.ascending_sort();
+
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << iters++;
+
+  cout << "\n\nTesting Prefix --:";
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << --iters;
+
+  cout << "\n\nTesting Prefix ++:";
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << ++iters;
+
+  cout << "\n\nTesting Postfix --";
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << iters--;
+
+  cout << endl;
+  cout << "Testing a <char *> Vector: " << endl;
+  Vector<const char *> z(3);
+  z[0] = "Orange";
+  z[1] = "Pear";
+  z[2] = "Apple";
+  ;
+
+  Vector<const char *>::VectIter iterchar(z);
+
+  cout << "\n\nTesting sort";
+  z.ascending_sort();
+
+  for (int i = 0; i < 3; i++)
+    cout << endl
+         << iterchar++;
 
 #endif
   cout << "\nPrgram Terminated Successfully." << endl;

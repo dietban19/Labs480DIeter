@@ -60,8 +60,19 @@ public:
   // PROMISES:copys s into charsM, if the length of s is less than or equal lengthM.
   //          Othrewise, extends the size of the charsM to s.lengthM+1, and copies
   //          s into the charsM.
+  int isGreaterThan(const Mystring &s) const;
+  int isLessThan(const Mystring &s) const;
+  int isEqual(const Mystring &s) const;
+  int isNotEqual(const Mystring &s) const;
+
+  bool operator>=(const Mystring &rhs) const;
+  bool operator<=(const Mystring &rhs) const;
   bool operator>(const Mystring &rhs) const;
   bool operator<(const Mystring &rhs) const;
+  bool operator!=(const Mystring &rhs) const;
+  bool operator==(const Mystring &rhs) const;
+  // char &operator[](const int index) const;
+
   friend ostream &operator<<(ostream &os, const Mystring &s);
 
 private:

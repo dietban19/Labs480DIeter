@@ -6,60 +6,59 @@
 
 using namespace std;
 
-Customer::Customer(const Mystring& fn, const Mystring& ln, const Mystring& ad, const Mystring& ph):fname(fn), lname(ln), address(ad), phone(ph)
+Customer::Customer(const Mystring &fn, const Mystring &ln, const Mystring &ad, const Mystring &ph) : fname(fn), lname(ln), address(ad), phone(ph)
 {
 }
 
-const char* Customer::getFname()const
+const char *Customer::getFname() const
 {
   return fname.c_str();
 }
 
-const char* Customer::getLname()const
+const char *Customer::getLname() const
 {
   return lname.c_str();
 }
 
-const char* Customer::getAddress()const
+const char *Customer::getAddress() const
 {
   return address.c_str();
 }
 
-const char* Customer::getPhone()const
+const char *Customer::getPhone() const
 {
   return phone.c_str();
 }
 
-void Customer::setFname(const char*s)
+void Customer::setFname(const char *s)
 {
   Mystring tmp(s);
-  fname=tmp;
+  fname = tmp;
 }
 
-void Customer::setLname(const char*s)
+void Customer::setLname(const char *s)
 {
   Mystring tmp(s);
-  lname=tmp;
+  lname = tmp;
 }
 
-void Customer::setAddress(const char*s)
+void Customer::setAddress(const char *s)
 {
   Mystring tmp(s);
-  address=tmp;
+  address = tmp;
 }
 
-void Customer::setPhone(const char*s)
+void Customer::setPhone(const char *s)
 {
   Mystring tmp(s);
-  phone=tmp;
+  phone = tmp;
 }
 
-
-ostream& operator << (ostream& os, const Customer& c)
+ostream &operator<<(ostream &os, const Customer &c)
 {
-  os<< "Nmae: "<< c.getFname();
-  os<<" " <<c.getLname();
-  os<< ". Address: " << c.getAddress();
-  os<< ". Phone:: " << c.getPhone();
+  os << "Name: " << c.getFname();
+  os << " " << c.getLname();
+  os << ". Address: " << c.getAddress();
+  os << ". Phone:: " << c.getPhone();
   return os;
 }
